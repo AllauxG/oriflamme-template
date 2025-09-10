@@ -1,0 +1,47 @@
+/* ORIFLAMME PILL FIX
+ * Correction de l'alignement du pill "Collectionne" juste après "Explore,"
+ * dans le titre principal, en préservant le style visuel (capsule jaune animée).
+ */
+
+/* 1) Définition d’une variable CSS pour l’espacement réduit entre "Explore," et "Collectionne" */
+.hero-01-title .hero-01-title__row {
+    --row-gap: 0.10rem;  /* espacement resserré entre "Explore," et le pill */
+}
+.hero-01-title__row {
+    gap: var(--row-gap) !important;  /* réduit le gap par défaut (≈3rem) à 0.5rem */
+}
+
+/* 2) Alignement du pill "Collectionne" juste à droite de "Explore," sur la même ligne */
+.hero-01-title em.hero-01-title__item.title-item-transparent {
+    /* Annule l’espace créé par le gap avant le pill */
+    margin-left: calc(-340 * var(--row-gap)) !important;
+    /* Ajoute un léger padding interne à gauche pour que le texte du pill
+       ne touche pas le bord jaune (espace visuel confortable après la virgule) */
+    padding-left: calc(-3.5em + -0.4* var(--row-gap)) !important;
+    /* Padding vertical et à droite du pill pour garder de l’air autour du texte */
+    padding-top: 0.2em !important;
+    padding-bottom: 0.2em !important;
+    padding-right: 0.5em !important;
+    /* Taille du texte du pill réduite à ~90% de celle du titre principal pour l’harmonie visuelle */
+    font-size: 0.9em !important;
+    /* Alignement vertical du texte du pill avec le texte "Explore," */
+    vertical-align: middle !important;
+    /* Annule tout décalage horizontal éventuel (ex : transform: translateX) */
+    transform: none !important;
+    /* Style visuel du pill : forme capsule jaune avec texte noir */
+    border-radius: 1500px !important;  /* bords très arrondis (capsule) */
+    background: #d8f24f !important;    /* fond jaune du pill (couleur d’accent) */
+    color: #111 !important;            /* texte noir pour un contraste optimal */
+    display: inline-block !important;  /* reste en ligne avec "Explore," */
+}
+
+/* 3) Centrage du titre principal (incluant "Explore," et le pill) */
+.hero-01-title {
+    text-align: center !important;
+    margin: 0 auto !important;
+}
+/* Augmenter uniquement "Explore," sans toucher le reste */
+.hero-01-title__row:first-child .hero-01-title__item {
+  font-size: 0.90em !important;   /* augmente seulement Explore */
+  letter-spacing: -0.02em;        /* optionnel : resserrer un peu */
+}

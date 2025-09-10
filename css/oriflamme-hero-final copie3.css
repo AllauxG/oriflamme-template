@@ -1,0 +1,235 @@
+* ORIFLAMME — Ajustements titre + pill + sous-titre (override fort) */
+
+/* Conteneur du titre */
+.hero-01-title {
+  text-align: center !important;
+  margin: 0 auto !important;
+  line-height: 1.05 !important;
+  margin-bottom: 1.25rem !important;
+}
+
+/* Chaque fragment de titre */
+.hero-01-title .hero-01-title__item,
+h1.hero-01-title .hero-01-title__item {
+  font-size: clamp(3.6rem, 5vw, 8.5rem) !important; /* ne plus toucher c'est ok pour inspecter web (AG) */
+  font-weight: 900 !important;
+  line-height: 1.05 !important;
+  margin: -4px !important;
+  display: inline-block !important;
+  color: 
+  /* sombre */
+html[data-theme="dark"] .hero-01-title .hero-01-title__item { color: #fff !important; }
+
+/* clair */
+html[data-theme="light"] .hero-01-title .hero-01-title__item { color: #111 !important; }
+ #fff !important;
+}
+
+.hero-01-title__item.title-item-transparent {
+  margin-left: 0 !important;     /* pas d’espace externe */
+  padding: 0.20em 0.50em 0.20em 0.35em !important; /* air interne */
+  transform: translateX(0.50em) !important; /* décalage visuel du pill SANS toucher Explore */
+}
+
+/* Sous-titre */
+.hero-01-subtitle,
+.hero-01-desc,
+.hero-01-title + * {
+  font-size: clamp(5rem, 7vw, 6rem) !important;
+  line-height: 1.1 !important;
+  text-align: center !important;
+  margin-top: 0.6rem !important;
+}
+
+/* Ajustements mobiles */
+@media (max-width: 768px) {
+  .hero-01-title .hero-01-title__item,
+  h1.hero-01-title .hero-01-title__item {
+    font-size: clamp(2.4rem, 10vw, 4rem) !important;
+  }
+  .hero-01-subtitle,
+  .hero-01-desc,
+  .hero-01-title + * {
+    font-size: clamp(1.6rem, 7.2vw, 3.2rem) !important;
+  }
+  /* --- Lang Switch (aligné avec les actions du header) --- */
+.mxd-header__controls { gap: 1rem; } /* s’aligne déjà, on renforce juste l’espace */
+
+.mxd-lang-switch {
+  position: relative;
+}
+
+.mxd-lang__btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  height: 42px;
+  padding: 0 .9rem;
+  border: 1px solid var(--t-muted, rgba(255,255,255,.25));
+  border-radius: var(--_radius-s, 1rem);
+  background: transparent;
+  color: var(--t-opp-bright, #fff);
+  font: inherit;
+  cursor: pointer;
+  transition: transform .2s var(--_animbezier), border-color .2s, background-color .2s;
+}
+
+.mxd-lang__btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--t-opp-bright, #fff);
+  background-color: var(--neutral-transparent, rgba(255,255,255,.08));
+}
+
+.mxd-lang__menu {
+  position: absolute;
+  top: calc(100% + .4rem);
+  right: 0;
+  min-width: 140px;
+  padding: .35rem;
+  margin: 0;
+  list-style: none;
+  border: 1px solid var(--t-muted, rgba(255,255,255,.2));
+  border-radius: .8rem;
+  background: var(--base, #161616);
+  color: var(--t-opp-bright, #fff);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity .18s, transform .18s, visibility .18s;
+  z-index: 20;
+}
+
+.mxd-lang-switch.is-open .mxd-lang__menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+
+.mxd-lang__menu li {
+  padding: .55rem .7rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+
+.mxd-lang__menu li[aria-selected="true"] {
+  background: rgba(255,255,255,.08);
+}
+
+.mxd-lang__menu li:hover {
+  background: rgba(255,255,255,.12);
+}
+
+/* Mode clair : reprend les couleurs Rayo automatiquement via variables */
+[color-scheme="light"] .mxd-lang__btn {
+  color: var(--t-bright, #161616);
+  border-color: var(--t-muted, rgba(0,0,0,.2));
+}
+[color-scheme="light"] .mxd-lang__menu {
+  background: var(--base, #FAF7F6);
+  color: var(--t-bright, #161616);
+  border-color: var(--t-muted, rgba(0,0,0,.15));
+  box-shadow: 0 10px 30px rgba(0,0,0,.12);
+}
+
+/* Container du sélecteur de langue dans le header */
+.mxd-header__controls { gap: 1rem; } /* Espacement entre icônes du header */
+.mxd-header__controls .mxd-lang-switch { position: relative; }
+
+/* Style du bouton principal (langue actuelle) */
+.mxd-lang-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: .6rem;
+  height: 40px;
+  padding: 0 12px;
+  border: 1px solid var(--neutral-transparent, rgba(255,255,255,.25));
+  border-radius: 999px;
+  background: color-mix(in oklab, var(--neutral-transparent, rgba(255,255,255,.18)) 60%, transparent);
+  backdrop-filter: saturate(120%) blur(8px);
+  -webkit-backdrop-filter: saturate(120%) blur(8px);
+  color: var(--t-opp-bright, #fff);
+  font: 700 1.4rem/1 "Funnel Display", sans-serif;
+  letter-spacing: .02em;
+  cursor: pointer;
+  transition: transform .15s ease, border-color .15s ease, background .15s ease;
+}
+.mxd-lang-btn:hover {
+  transform: translateY(-1px);
+  border-color: var(--t-opp-bright, #fff);
+  background-color: var(--neutral-transparent, rgba(255,255,255,.08));
+}
+.mxd-lang-btn:focus-visible {
+  outline: 2px solid var(--additional, #DDF160);
+  outline-offset: 2px;
+}
+
+/* Icône de chevron (caret) dans le bouton */
+.mxd-lang-btn .mxd-caret {
+  opacity: .7;
+  transition: transform .15s ease;
+}
+.mxd-lang-btn[aria-expanded="true"] .mxd-caret {
+  transform: rotate(180deg); /* Rotation du chevron vers le haut quand le menu est ouvert */
+}
+
+/* Menu déroulant des langues */
+.mxd-lang-menu {
+  position: absolute;
+  top: calc(100% + 0.4rem);
+  right: 0;
+  min-width: 140px;
+  margin: 0;
+  padding: .35rem;
+  list-style: none;
+  border: 1px solid var(--t-muted, rgba(255,255,255,.2));
+  border-radius: .8rem;
+  background: var(--base, #161616);
+  color: var(--t-opp-bright, #fff);
+  box-shadow: 0 10px 30px rgba(0,0,0,.25);
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(-4px);
+  transition: opacity .18s ease, transform .18s ease, visibility .18s;
+  z-index: 20;
+}
+.mxd-lang-switch.is-open .mxd-lang-menu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0);
+}
+.mxd-lang-menu li {
+  display: flex;
+  align-items: center;
+  gap: .5rem;
+  padding: .55rem .7rem;
+  border-radius: .5rem;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.mxd-lang-menu li[aria-selected="true"] {
+  background: rgba(255,255,255, .08); /* élément sélectionné (sur fond sombre) */
+}
+.mxd-lang-menu li:hover {
+  background: rgba(255,255,255, .12);
+}
+
+/* Adaptation des couleurs en mode clair */
+html[data-theme="light"] .mxd-lang-btn {
+  color: var(--t-bright, #161616);
+  border-color: rgba(0,0,0, .12);
+  background: rgba(0,0,0, .04);
+}
+html[data-theme="light"] .mxd-lang-menu {
+  background: var(--base, #FAF7F6);
+  color: var(--t-bright, #161616);
+  border-color: var(--t-muted, rgba(0,0,0, .15));
+  box-shadow: 0 10px 30px rgba(0,0,0, .12);
+}
+html[data-theme="light"] .mxd-lang-menu li[aria-selected="true"] {
+  background: rgba(0,0,0, .04); /* élément sélectionné (sur fond clair) */
+}
+html[data-theme="light"] .mxd-lang-menu li:hover {
+  background: rgba(0,0,0, .08);
+}
